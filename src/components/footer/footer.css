@@ -1,0 +1,15 @@
+/* Contact section */
+
+#footer {
+    background-color: #383838;
+    min-height: 400px;
+    display: flex;
+}
+
+#footer ul {
+    list-style: none;
+}
+
+.footer_column {
+    flex: 1 1 33%;
+}

@@ -1,0 +1,76 @@
+/* Modal */
+
+.style_Modal {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+}
+
+.style_ModalImg:hover {
+    cursor: pointer;
+}
+
+.style_ModalImg {
+    display: flex;
+    background-color: rgba(255, 219, 88, 1.0);
+    height: calc(90% - 180px);
+    align-items: center;
+    margin: auto;
+    border: 6px solid teal;
+}
+
+.modalButton_next,
+.modalButton_back {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.modalButton_back img,
+.modalButton_next img {
+    height: 100px;
+}
+
+.modalButton_back:hover,
+.modalButton_next:hover {
+    transform: scale(1.2);
+}
+
+
+/* Grid */
+
+.style_Grid {
+    margin: 0;
+    padding: 0;
+    margin: 50px 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.style_GridImg {
+    border: 6px solid teal;
+    text-align: center;
+    flex: 0 0 1;
+    height: 300px;
+    width: 300px;
+    margin: 10px;
+    display: flex;
+    cursor: pointer;
+    /* background-color: rgba(255, 219, 88, 1.0); */
+}
+
+.style_GridImg:hover {
+    transform: scale(1.1);
+    border: 3px solid teal;
+}
+
+.label {
+    font-weight: bold;
+    text-align: center;
+}

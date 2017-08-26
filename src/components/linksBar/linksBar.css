@@ -1,0 +1,26 @@
+/* Links Bar*/
+
+.links-bar {
+    margin-top: 30px;
+}
+
+.links-bar img {
+    position: relative;
+    height: 70px;
+}
+
+.links-bar ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.links-bar li {
+    padding: 0 50px;
+}
+
+.links-bar li:hover {
+    transform: scale(1.1);
+}
