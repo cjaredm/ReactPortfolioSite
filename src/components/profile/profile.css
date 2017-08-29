@@ -1,59 +1,68 @@
-/*Header and Navagation*/
+/* Profile */
 
-.fixed-nav .site-wrap {
-    /* transform: scale(1); */
-}
-
-.nav {
-    top: 0;
-    width: 100%;
-    transition: all 0.5s;
-    position: relative;
-    z-index: 1;
-}
-
-.fixed-nav .nav {
-    position: fixed;
-}
-
-.fixed-nav li.logo {
-    max-width: 500px;
-    /* min-width: 180px; */
-}
-
-li.logo {
-    max-width: 0;
-    overflow: hidden;
-    background: transparent;
-    transition: all .5s;
-}
-
-.nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-}
-
-.nav li {
-    flex: 1;
-    text-align: center;
+.profile {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
 }
 
-.logo img {
-    padding-top: 5px;
-    width: 180px;
+
+/* Profile Section ColumnLeft */
+
+#columnLeft {
+    width: 200px;
+    height: 300px;
+    /* border: 1px solid rgba(255, 255, 255, 0.8); */
 }
 
-.nav a {
-    text-decoration: none;
-    padding: 20px;
-    display: inline-block;
+.avatar {
+    border-radius: 75%;
+    align-self: center;
+}
+
+.profile_picture__logo {
+    width: 200px;
+}
+
+
+/*Skills */
+
+.profile_column {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_column ul {
+    list-style: none;
+}
+
+.profile_info__skills ul {
+    display: flex;
+    list-style: none;
+}
+
+
+/* Radials */
+
+.radialDivs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: white;
-    font-size: 20px;
-    transition: all 0.2s;
-    text-transform: uppercase;
+}
+
+.radial_label {
+    color: white;
+    text-align: center;
+}
+
+
+/* About Section below Radials */
+
+.profile_info__about {
+    color: white;
+    justify-content: center;
+    width: 490px;
+    margin-left: 50px;
 }

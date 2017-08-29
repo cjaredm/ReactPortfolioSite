@@ -32,12 +32,14 @@ class FixedNav extends Component {
         <br />
         <li className="logo">
           <img src="./img/profile/cJaredmLogo.png" alt="cJaredm Logo" />
-        </li>{" "}
+        </li>
         {navList.map((navItem, index) =>
           <li className="navName" key={`nav_${index}`}>
-            <a href={navItem.url}> {navItem.navName} </a>{" "}
+            <a href={navItem.url}>
+              {navItem.navName}
+            </a>
           </li>
-        )}{" "}
+        )}
       </ul>
     );
   }

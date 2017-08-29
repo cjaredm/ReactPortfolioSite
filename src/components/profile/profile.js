@@ -1,6 +1,82 @@
 import React, { Component } from "react";
 
-const thing = [];
+const column1 = {
+  picture: {
+    class: "avatar",
+    src: "img/profile/JaredProfilePic.jpg",
+    imgHeight: "300"
+  },
+  logo: {
+    class: "profile_picture__logo",
+    src: "./img/profile/cJaredmLogo.png"
+  }
+};
+
+const skills = [
+  {
+    divClass: "radialDivs",
+    canvas: {
+      class: "radials",
+      circleID: "radialOne",
+      circleWidth: "100",
+      circleHeight: "100",
+      dataNum: "10",
+      dataColor: "#ad2323"
+    },
+    skill: {
+      name: "Skill 1",
+      skillClass: "radial_label"
+    }
+  },
+  {
+    divClass: "radialDivs",
+    canvas: {
+      class: "radials",
+      circleID: "radialTwo",
+      circleWidth: "100",
+      circleHeight: "100",
+      dataNum: "25",
+      dataColor: "blue"
+    },
+    skillName: "Skill 2"
+  },
+  {
+    divClass: "radialDivs",
+    canvas: {
+      class: "radials",
+      circleID: "radialThree",
+      circleWidth: "100",
+      circleHeight: "100",
+      dataNum: "50",
+      dataColor: "orange"
+    },
+    skillName: "Skill 3"
+  },
+  {
+    divClass: "radialDivs",
+    canvas: {
+      class: "radials",
+      circleID: "radialFour",
+      circleWidth: "100",
+      circleHeight: "100",
+      dataNum: "80",
+      dataColor: "yellow"
+    },
+    skillName: "Skill 4"
+  },
+  {
+    divClass: "radialDivs",
+    canvas: {
+      class: "radials",
+      circleID: "radialFive",
+      circleWidth: "100",
+      circleHeight: "100",
+      dataNum: "90",
+      dataColor: "purple"
+    },
+    skillName: "Skill 5"
+  }
+];
 
 class Profile extends Component {
   state = {};
@@ -9,21 +85,34 @@ class Profile extends Component {
     return (
       <div className="profile">
         <img
-          className="avatar"
-          src=".img/landing/JaredProfilePic.jpg"
-          height="300"
+          className={column1.picture.class}
+          src={column1.picture.src}
+          height={column1.picture.imgHeight}
         />
         <br />
-        <img
-          className="profile_picture__logo"
-          src="./img/landing/cJaredmLogo.png"
-          alt="cJaredm Logo"
-        />
-      </div>
-      <div class="profile_column">
+        <img className={column1.logo.class} src={column1.logo.src} />
+        <div className="profile_column">
+          <ul>
+            {skills.map((skill, index) =>
+              <li key={`skill_${index}`}>
+                <div className={skill.divClass}>
+                  <canvas
+                    className={skill.canvas.class}
+                    id={skill.canvas.circleID}
+                    width={skill.canvas.circleWidth}
+                    height={skill.canvas.circleHeight}
+                    data-num={skill.canvas.dataNum}
+                    data-color={skill.canvas.dataColor}
+                  />
+                  <div>
+                    {skill.skillName}
+                  </div>
+                </div>
+              </li>
+            )}
+          </ul>
         </div>
-
-
+      </div>
     );
   }
 }
@@ -32,12 +121,6 @@ export default Profile;
 
 /* 
 <div class="profile" id="none">
-
-<div class="profile_column">
-    <img class="avatar" src="./src/img/landing/JaredProfilePic.jpg" height="150" width="150">
-    <br>
-    <img class="profile_picture__logo" src="./src/img/landing/cJaredmLogo.png" alt="cJaredm">
-</div>
 <div class="profile_column">
     <div class="profile_info__skills">
         <ul>

@@ -9768,6 +9768,12 @@ var _debounce2 = _interopRequireDefault(_debounce);
 
 var _fixedNav3 = __webpack_require__(186);
 
+var _profile = __webpack_require__(187);
+
+var _profile2 = _interopRequireDefault(_profile);
+
+var _radialAnimation = __webpack_require__(192);
+
 var _flexPanels = __webpack_require__(188);
 
 var _flexPanels2 = _interopRequireDefault(_flexPanels);
@@ -9787,14 +9793,10 @@ var _imageGallery2 = _interopRequireDefault(_imageGallery);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* Create Nav / Fix it at the top when scrolled */
-
-
-//import Profile from "./components/profile/profile.js";
-
 _reactDom2.default.render(_react2.default.createElement(_fixedNav2.default, null), document.querySelector(".nav"));
 window.addEventListener("scroll", (0, _debounce2.default)(_fixedNav3.fixNav));
 
-//ReactDOM.render(<Profile />, document.querySelector(".profileWrap"));
+_reactDom2.default.render(_react2.default.createElement(_profile2.default, null), document.querySelector(".profileWrap"));
 _reactDom2.default.render(_react2.default.createElement(_flexPanels2.default, null), document.querySelector(".home"));
 _reactDom2.default.render(_react2.default.createElement(_linksBar2.default, null), document.querySelector(".links-bar"));
 _reactDom2.default.render(_react2.default.createElement(_imageGallery2.default, null), document.querySelector(".porfolio_grid"));
@@ -22496,7 +22498,6 @@ var FixedNav = function (_Component) {
           { className: "logo" },
           _react2.default.createElement("img", { src: "./img/profile/cJaredmLogo.png", alt: "cJaredm Logo" })
         ),
-        " ",
         navList.map(function (navItem, index) {
           return _react2.default.createElement(
             "li",
@@ -22504,14 +22505,10 @@ var FixedNav = function (_Component) {
             _react2.default.createElement(
               "a",
               { href: navItem.url },
-              " ",
-              navItem.navName,
-              " "
-            ),
-            " "
+              navItem.navName
+            )
           );
-        }),
-        " "
+        })
       );
     }
   }]);
@@ -22582,17 +22579,17 @@ var topOfNav = nav.offsetTop;
 var landing = document.querySelector(".nav").parentElement;
 var landingHeight = landing.offsetHeight;
 var almostBottomOfLanding = landingHeight - navHeight;
-var nextSib = document.querySelector(".nav").nextSibling;
+var nextSib = document.querySelector(".nav").nextElementSibling;
 
 function fixNav() {
     var scrolledDown = false;
 
     if (window.scrollY >= topOfNav + 2) {
-        //nextSib.style.paddingTop = `${nav.offsetHeight}px`;
+        nextSib.style.paddingTop = nav.offsetHeight + "px";
         document.body.classList.add("fixed-nav");
         scrolledDown = true;
     } else {
-        //nextSib.style.paddingTop = 0;
+        nextSib.style.paddingTop = 0;
         document.body.classList.remove("fixed-nav");
         scrolledDown = false;
     }
@@ -22607,7 +22604,221 @@ function fixNav() {
 }
 
 /***/ }),
-/* 187 */,
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(16);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var column1 = {
+  picture: {
+    class: "avatar",
+    src: "img/profile/JaredProfilePic.jpg",
+    imgHeight: "300"
+  },
+  logo: {
+    class: "profile_picture__logo",
+    src: "./img/profile/cJaredmLogo.png"
+  }
+};
+
+var skills = [{
+  divClass: "radialDivs",
+  canvas: {
+    class: "radials",
+    circleID: "radialOne",
+    circleWidth: "100",
+    circleHeight: "100",
+    dataNum: "10",
+    dataColor: "#ad2323"
+  },
+  skill: {
+    name: "Skill 1",
+    skillClass: "radial_label"
+  }
+}, {
+  divClass: "radialDivs",
+  canvas: {
+    class: "radials",
+    circleID: "radialTwo",
+    circleWidth: "100",
+    circleHeight: "100",
+    dataNum: "25",
+    dataColor: "blue"
+  },
+  skillName: "Skill 2"
+}, {
+  divClass: "radialDivs",
+  canvas: {
+    class: "radials",
+    circleID: "radialThree",
+    circleWidth: "100",
+    circleHeight: "100",
+    dataNum: "50",
+    dataColor: "orange"
+  },
+  skillName: "Skill 3"
+}, {
+  divClass: "radialDivs",
+  canvas: {
+    class: "radials",
+    circleID: "radialFour",
+    circleWidth: "100",
+    circleHeight: "100",
+    dataNum: "80",
+    dataColor: "yellow"
+  },
+  skillName: "Skill 4"
+}, {
+  divClass: "radialDivs",
+  canvas: {
+    class: "radials",
+    circleID: "radialFive",
+    circleWidth: "100",
+    circleHeight: "100",
+    dataNum: "90",
+    dataColor: "purple"
+  },
+  skillName: "Skill 5"
+}];
+
+var Profile = function (_Component) {
+  _inherits(Profile, _Component);
+
+  function Profile() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Profile);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Profile.__proto__ || Object.getPrototypeOf(Profile)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Profile, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        { className: "profile" },
+        _react2.default.createElement("img", {
+          className: column1.picture.class,
+          src: column1.picture.src,
+          height: column1.picture.imgHeight
+        }),
+        _react2.default.createElement("br", null),
+        _react2.default.createElement("img", { className: column1.logo.class, src: column1.logo.src }),
+        _react2.default.createElement(
+          "div",
+          { className: "profile_column" },
+          _react2.default.createElement(
+            "ul",
+            null,
+            skills.map(function (skill, index) {
+              return _react2.default.createElement(
+                "li",
+                { key: "skill_" + index },
+                _react2.default.createElement(
+                  "div",
+                  { className: skill.divClass },
+                  _react2.default.createElement("canvas", {
+                    className: skill.canvas.class,
+                    id: skill.canvas.circleID,
+                    width: skill.canvas.circleWidth,
+                    height: skill.canvas.circleHeight,
+                    "data-num": skill.canvas.dataNum,
+                    "data-color": skill.canvas.dataColor
+                  }),
+                  _react2.default.createElement(
+                    "div",
+                    null,
+                    skill.skillName
+                  )
+                )
+              );
+            })
+          )
+        )
+      );
+    }
+  }]);
+
+  return Profile;
+}(_react.Component);
+
+exports.default = Profile;
+
+/* 
+<div class="profile" id="none">
+<div class="profile_column">
+    <div class="profile_info__skills">
+        <ul>
+            <li>
+                <div class="radialDivs">
+                    <canvas class="radials" id="radialOne" width="100" height="100" data-num="10" data-color="#ad2323"></canvas>
+                    <div>Skill 1</div>
+                </div>
+            </li>
+            <li>
+                <div class="radialDivs">
+                    <canvas class="radials" id="radialTwo" width="100" height="100" data-num="25" data-color="blue"></canvas>
+                    <div>Skill 2</div>
+                </div>
+            </li>
+            <li>
+                <div class="radialDivs">
+                    <canvas class="radials" id="radialThree" width="100" height="100" data-num="50" data-color="orange"></canvas>
+                    <div>Skill 3</div>
+                </div>
+            </li>
+            <li>
+                <div class="radialDivs">
+                    <canvas class="radials" id="radialFour" width="100" height="100" data-num="75" data-color="yellow"></canvas>
+                    <div>Skill 4</div>
+                </div>
+            </li>
+            <li>
+                <div class="radialDivs">
+                    <canvas class="radials" id="radialFive" width="100" height="100" data-num="80" data-color="purple"></canvas>
+                    <div>Skill 5</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="profile_info__about">
+        <h3>About Section</h3>
+        <p>So this is the about me section where I talk about myself and see how it shows up on the page. Hoefully it will be displayed centered and below the skills radials that I have. I hope I can get the radials to animate when they show
+            up on the page, each time.</p>
+    </div>
+</div>
+</div>
+
+    </div>
+*/
+
+/***/ }),
 /* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23033,6 +23244,59 @@ var Gallery = function (_Component) {
 }(_react.Component);
 
 exports.default = Gallery;
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.animateSkillsCircles = animateSkillsCircles;
+// NEXT SECTION
+/*************Radial Animations*****************/
+//http://jsfiddle.net/loktar/uhVj6/4/
+
+var currentPercent = exports.currentPercent = 1; //Compared to endPercent so it knows to end.
+
+function animateSkillsCircles(rads, current) {
+    var context = rads.getContext('2d');
+    //Starting coordinates
+    var x = rads.width / 2; //middle of canvas
+    var y = rads.height / 2; //middle of canvas
+    var radius = 0.38 * rads.width; //Radius of circle in pixels
+    var endNum = rads.getAttribute('data-num');
+    var endPercent = +rads.getAttribute('data-num') + +1; //Ending % of circle
+    var fullCircle = Math.PI * 2; //= 360 degrees in radians
+    var quarterClock = Math.PI / 2; //This equals 25% of a circle used later to move start point from 3 o'clock to 12.
+
+    context.lineWidth = 10; // Line width
+    context.strokeStyle = rads.getAttribute('data-color'); //Line Color
+
+    context.beginPath();
+    //https://www.w3schools.com/tags/canvas_arc.asp
+    context.arc(x, y, radius, -quarterClock, fullCircle * current - quarterClock, false);
+    context.stroke(); //Draw the line
+    exports.currentPercent = currentPercent += 1; // +1%
+
+    //Canvas Text
+    context.font = 'lighter ' + radius * 0.7 + 'px serif';
+    context.textBaseline = "top";
+    context.textAlign = "center";
+    context.fillStyle = 'white';
+    context.fillText(endNum, x, y - y * 0.3);
+
+    if (currentPercent < endPercent) {
+        //If the +1 didn't put it to the endPercent then do it again, starting at the current percentage
+        requestAnimationFrame(function () {
+            return animateSkillsCircles(rads, currentPercent / 100);
+        });
+    }
+    context.closePath();
+}
 
 /***/ })
 /******/ ]);
