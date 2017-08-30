@@ -1,3 +1,5 @@
+/* Creates a bar of social media images and links */
+
 import React, { Component } from "react";
 
 const socialData = [

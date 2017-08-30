@@ -1,3 +1,5 @@
+/* Creates 3 panels to span the width of the page. They when clicked on they each will spread wider and shrink the others and dropdown supporting text from above and below. */
+
 import React, { Component } from "react";
 
 const panelData = [

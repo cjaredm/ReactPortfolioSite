@@ -1,3 +1,5 @@
+/* No need for this yet. Creating it later for the landing area of the page */
+
 import React, { Component } from "react";
 
 const thing = [];

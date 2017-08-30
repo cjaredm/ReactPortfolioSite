@@ -1,3 +1,5 @@
+/* Creates a flex grid of images and includes a modal pop up with back and next buttons */
+
 import React, { Component } from "react";
 
 //Figure out how to import the photos from the portfolioGrid to the array below.
@@ -67,37 +69,42 @@ class Gallery extends Component {
     return (
       <div className="galleryWrapper">
         <div className="style_Grid">
-          {" "}{portfolioItems.map((item, index) =>
+          {portfolioItems.map((item, index) =>
             <div key={`portfolioItem_${index}`}>
               <img
                 className="style_GridImg"
                 src={item.imgSrc}
                 onClick={() => this.handleImageClick(index)}
-              />{" "}
-              <p className="label"> {item.label} </p>{" "}
+              />
+              <p className="label">
+                {" "}{item.label}{" "}
+              </p>
             </div>
-          )}{" "}
+          )}
+
           {this.state.imgIndex !== null &&
             <div className="style_Modal">
               <div className="modalButton_back">
                 <img
                   src="http://www.free-icons-download.net/images/green-back-button-icon-65921.png"
                   onClick={this.handleBackClick}
-                />{" "}
-              </div>{" "}
+                />
+              </div>
+
               <img
                 className="style_ModalImg"
                 src={portfolioItems[this.state.imgIndex]["imgSrc"]}
                 onClick={this.handleModalClose}
-              />{" "}
+              />
+
               <div className="modalButton_next">
                 <img
                   src="http://www.free-icons-download.net/images/green-forward-button-icon-65922.png"
                   onClick={this.handleNextClick}
-                />{" "}
-              </div>{" "}
-            </div>}{" "}
-        </div>{" "}
+                />
+              </div>
+            </div>}
+        </div>
       </div>
     );
   }

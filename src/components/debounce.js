@@ -1,4 +1,4 @@
-//This will have it run only every so often instead of every millisecond
+//This will have a function run only every so often instead of every millisecond
 export default function debounce(func, wait = 20, immediate = true) {
     var timeout;
     return function() {

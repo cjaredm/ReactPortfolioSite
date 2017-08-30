@@ -1,4 +1,5 @@
-/* Sticky Nav */
+/* Sticky Nav,
+Navigation that fixes itself to the top of the page when scrolled */
 const nav = document.querySelector(".nav");
 const navHeight = nav.offsetHeight;
 const topOfNav = nav.offsetTop;

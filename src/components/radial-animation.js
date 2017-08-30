@@ -1,26 +1,32 @@
-// NEXT SECTION
 /*************Radial Animations*****************/
+/* Canvas draws a circle, starting from 12 o'clock, going clockwise, to the percentage indicated from the data-num attribute on the HTML element it is drawing in. */
 //http://jsfiddle.net/loktar/uhVj6/4/
 
 export let currentPercent = 1; //Compared to endPercent so it knows to end.
 
 export function animateSkillsCircles(rads, current) {
-    const context = rads.getContext('2d');
+    const context = rads.getContext("2d");
     //Starting coordinates
     const x = rads.width / 2; //middle of canvas
     const y = rads.height / 2; //middle of canvas
     const radius = 0.38 * rads.width; //Radius of circle in pixels
-    const endNum = rads.getAttribute('data-num');
-    const endPercent = +rads.getAttribute('data-num') + +1; //Ending % of circle
+    const endNum = rads.getAttribute("data-num");
+    const endPercent = +rads.getAttribute("data-num") + +1; //Ending % of circle
     const fullCircle = Math.PI * 2; //= 360 degrees in radians
     const quarterClock = Math.PI / 2; //This equals 25% of a circle used later to move start point from 3 o'clock to 12.
 
     context.lineWidth = 10; // Line width
-    context.strokeStyle = rads.getAttribute('data-color'); //Line Color
+    context.strokeStyle = rads.getAttribute("data-color"); //Line Color
 
     context.beginPath();
     //https://www.w3schools.com/tags/canvas_arc.asp
-    context.arc(x, y, radius, -(quarterClock), ((fullCircle) * current) - quarterClock, false);
+    context.arc(
+        x,
+        y,
+        radius, -quarterClock,
+        fullCircle * current - quarterClock,
+        false
+    );
     context.stroke(); //Draw the line
     currentPercent++; // +1%
 
@@ -28,11 +34,14 @@ export function animateSkillsCircles(rads, current) {
     context.font = `lighter ${radius * 0.7}px serif`;
     context.textBaseline = "top";
     context.textAlign = "center";
-    context.fillStyle = 'white';
-    context.fillText(endNum, x, y - (y * 0.3));
+    context.fillStyle = "white";
+    context.fillText(endNum, x, y - y * 0.3);
 
-    if (currentPercent < endPercent) { //If the +1 didn't put it to the endPercent then do it again, starting at the current percentage
-        requestAnimationFrame(() => animateSkillsCircles(rads, (currentPercent / 100)));
+    if (currentPercent < endPercent) {
+        //If the +1 didn't put it to the endPercent then do it again, starting at the current percentage
+        requestAnimationFrame(() =>
+            animateSkillsCircles(rads, currentPercent / 100)
+        );
     }
     context.closePath();
 }

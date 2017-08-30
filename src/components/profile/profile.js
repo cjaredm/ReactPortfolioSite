@@ -84,14 +84,16 @@ class Profile extends Component {
   render() {
     return (
       <div className="profile">
-        <img
-          className={column1.picture.class}
-          src={column1.picture.src}
-          height={column1.picture.imgHeight}
-        />
-        <br />
-        <img className={column1.logo.class} src={column1.logo.src} />
         <div className="profile_column">
+          <img
+            className={column1.picture.class}
+            src={column1.picture.src}
+            height={column1.picture.imgHeight}
+          />
+          <br />
+          <img className={column1.logo.class} src={column1.logo.src} />
+        </div>
+        <div className="profile_info__skills">
           <ul>
             {skills.map((skill, index) =>
               <li key={`skill_${index}`}>

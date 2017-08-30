@@ -9772,21 +9772,21 @@ var _profile = __webpack_require__(187);
 
 var _profile2 = _interopRequireDefault(_profile);
 
-var _radialAnimation = __webpack_require__(192);
+var _radialAnimation = __webpack_require__(188);
 
-var _flexPanels = __webpack_require__(188);
+var _flexPanels = __webpack_require__(189);
 
 var _flexPanels2 = _interopRequireDefault(_flexPanels);
 
-var _linksBar = __webpack_require__(189);
+var _linksBar = __webpack_require__(190);
 
 var _linksBar2 = _interopRequireDefault(_linksBar);
 
-var _konami = __webpack_require__(190);
+var _konami = __webpack_require__(191);
 
 var _konami2 = _interopRequireDefault(_konami);
 
-var _imageGallery = __webpack_require__(191);
+var _imageGallery = __webpack_require__(192);
 
 var _imageGallery2 = _interopRequireDefault(_imageGallery);
 
@@ -22541,7 +22541,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = debounce;
-//This will have it run only every so often instead of every millisecond
+//This will have a function run only every so often instead of every millisecond
 function debounce(func) {
     var wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 20;
     var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
@@ -22572,7 +22572,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.fixNav = fixNav;
-/* Sticky Nav */
+/* Sticky Nav,
+Navigation that fixes itself to the top of the page when scrolled */
 var nav = document.querySelector(".nav");
 var navHeight = nav.offsetHeight;
 var topOfNav = nav.offsetTop;
@@ -22723,16 +22724,20 @@ var Profile = function (_Component) {
       return _react2.default.createElement(
         "div",
         { className: "profile" },
-        _react2.default.createElement("img", {
-          className: column1.picture.class,
-          src: column1.picture.src,
-          height: column1.picture.imgHeight
-        }),
-        _react2.default.createElement("br", null),
-        _react2.default.createElement("img", { className: column1.logo.class, src: column1.logo.src }),
         _react2.default.createElement(
           "div",
           { className: "profile_column" },
+          _react2.default.createElement("img", {
+            className: column1.picture.class,
+            src: column1.picture.src,
+            height: column1.picture.imgHeight
+          }),
+          _react2.default.createElement("br", null),
+          _react2.default.createElement("img", { className: column1.logo.class, src: column1.logo.src })
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "profile_info__skills" },
           _react2.default.createElement(
             "ul",
             null,
@@ -22826,6 +22831,59 @@ exports.default = Profile;
 
 
 Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.animateSkillsCircles = animateSkillsCircles;
+/*************Radial Animations*****************/
+/* Canvas draws a circle, starting from 12 o'clock, going clockwise, to the percentage indicated from the data-num attribute on the HTML element it is drawing in. */
+//http://jsfiddle.net/loktar/uhVj6/4/
+
+var currentPercent = exports.currentPercent = 1; //Compared to endPercent so it knows to end.
+
+function animateSkillsCircles(rads, current) {
+    var context = rads.getContext("2d");
+    //Starting coordinates
+    var x = rads.width / 2; //middle of canvas
+    var y = rads.height / 2; //middle of canvas
+    var radius = 0.38 * rads.width; //Radius of circle in pixels
+    var endNum = rads.getAttribute("data-num");
+    var endPercent = +rads.getAttribute("data-num") + +1; //Ending % of circle
+    var fullCircle = Math.PI * 2; //= 360 degrees in radians
+    var quarterClock = Math.PI / 2; //This equals 25% of a circle used later to move start point from 3 o'clock to 12.
+
+    context.lineWidth = 10; // Line width
+    context.strokeStyle = rads.getAttribute("data-color"); //Line Color
+
+    context.beginPath();
+    //https://www.w3schools.com/tags/canvas_arc.asp
+    context.arc(x, y, radius, -quarterClock, fullCircle * current - quarterClock, false);
+    context.stroke(); //Draw the line
+    exports.currentPercent = currentPercent += 1; // +1%
+
+    //Canvas Text
+    context.font = "lighter " + radius * 0.7 + "px serif";
+    context.textBaseline = "top";
+    context.textAlign = "center";
+    context.fillStyle = "white";
+    context.fillText(endNum, x, y - y * 0.3);
+
+    if (currentPercent < endPercent) {
+        //If the +1 didn't put it to the endPercent then do it again, starting at the current percentage
+        requestAnimationFrame(function () {
+            return animateSkillsCircles(rads, currentPercent / 100);
+        });
+    }
+    context.closePath();
+}
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -22841,7 +22899,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* Creates 3 panels to span the width of the page. They when clicked on they each will spread wider and shrink the others and dropdown supporting text from above and below. */
 
 var panelData = [{
   class: "panel panel0",
@@ -22966,7 +23024,7 @@ var FlexPanels = function (_Component) {
 exports.default = FlexPanels;
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22988,7 +23046,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* Creates a bar of social media images and links */
 
 var socialData = [{
   class: "github",
@@ -23057,21 +23115,23 @@ var LinksBar = function (_Component) {
 exports.default = LinksBar;
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+/* Listening in the background for key presses until the Konami Code is typed, then it redirects the page to the Konami Code Wiki page */
+
 var pressed = [];
 var konami = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
 
-window.addEventListener('keyup', function (e) {
+window.addEventListener("keyup", function (e) {
     pressed.push(e.key);
     pressed.splice(-konami.length - 1, pressed.length - konami.length);
 
-    if (pressed.join('') == konami.join('')) {
-        console.log('Komani Code entered successfully!');
+    if (pressed.join("") == konami.join("")) {
+        console.log("Komani Code entered successfully!");
 
         //Add Something in here that would be fun.
         window.location.href = "https://en.wikipedia.org/wiki/Konami_Code";
@@ -23079,7 +23139,7 @@ window.addEventListener('keyup', function (e) {
 });
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23101,7 +23161,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* Creates a flex grid of images and includes a modal pop up with back and next buttons */
 
 //Figure out how to import the photos from the portfolioGrid to the array below.
 /* Array of Image Sources for gallery */
@@ -23179,7 +23239,6 @@ var Gallery = function (_Component) {
         _react2.default.createElement(
           "div",
           { className: "style_Grid" },
-          " ",
           portfolioItems.map(function (item, index) {
             return _react2.default.createElement(
               "div",
@@ -23191,18 +23250,15 @@ var Gallery = function (_Component) {
                   return _this2.handleImageClick(index);
                 }
               }),
-              " ",
               _react2.default.createElement(
                 "p",
                 { className: "label" },
                 " ",
                 item.label,
                 " "
-              ),
-              " "
+              )
             );
           }),
-          " ",
           this.state.imgIndex !== null && _react2.default.createElement(
             "div",
             { className: "style_Modal" },
@@ -23212,30 +23268,23 @@ var Gallery = function (_Component) {
               _react2.default.createElement("img", {
                 src: "http://www.free-icons-download.net/images/green-back-button-icon-65921.png",
                 onClick: this.handleBackClick
-              }),
-              " "
+              })
             ),
-            " ",
             _react2.default.createElement("img", {
               className: "style_ModalImg",
               src: portfolioItems[this.state.imgIndex]["imgSrc"],
               onClick: this.handleModalClose
             }),
-            " ",
             _react2.default.createElement(
               "div",
               { className: "modalButton_next" },
               _react2.default.createElement("img", {
                 src: "http://www.free-icons-download.net/images/green-forward-button-icon-65922.png",
                 onClick: this.handleNextClick
-              }),
-              " "
-            ),
-            " "
-          ),
-          " "
-        ),
-        " "
+              })
+            )
+          )
+        )
       );
     }
   }]);
@@ -23244,59 +23293,6 @@ var Gallery = function (_Component) {
 }(_react.Component);
 
 exports.default = Gallery;
-
-/***/ }),
-/* 192 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.animateSkillsCircles = animateSkillsCircles;
-// NEXT SECTION
-/*************Radial Animations*****************/
-//http://jsfiddle.net/loktar/uhVj6/4/
-
-var currentPercent = exports.currentPercent = 1; //Compared to endPercent so it knows to end.
-
-function animateSkillsCircles(rads, current) {
-    var context = rads.getContext('2d');
-    //Starting coordinates
-    var x = rads.width / 2; //middle of canvas
-    var y = rads.height / 2; //middle of canvas
-    var radius = 0.38 * rads.width; //Radius of circle in pixels
-    var endNum = rads.getAttribute('data-num');
-    var endPercent = +rads.getAttribute('data-num') + +1; //Ending % of circle
-    var fullCircle = Math.PI * 2; //= 360 degrees in radians
-    var quarterClock = Math.PI / 2; //This equals 25% of a circle used later to move start point from 3 o'clock to 12.
-
-    context.lineWidth = 10; // Line width
-    context.strokeStyle = rads.getAttribute('data-color'); //Line Color
-
-    context.beginPath();
-    //https://www.w3schools.com/tags/canvas_arc.asp
-    context.arc(x, y, radius, -quarterClock, fullCircle * current - quarterClock, false);
-    context.stroke(); //Draw the line
-    exports.currentPercent = currentPercent += 1; // +1%
-
-    //Canvas Text
-    context.font = 'lighter ' + radius * 0.7 + 'px serif';
-    context.textBaseline = "top";
-    context.textAlign = "center";
-    context.fillStyle = 'white';
-    context.fillText(endNum, x, y - y * 0.3);
-
-    if (currentPercent < endPercent) {
-        //If the +1 didn't put it to the endPercent then do it again, starting at the current percentage
-        requestAnimationFrame(function () {
-            return animateSkillsCircles(rads, currentPercent / 100);
-        });
-    }
-    context.closePath();
-}
 
 /***/ })
 /******/ ]);
