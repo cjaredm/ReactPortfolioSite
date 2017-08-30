@@ -22651,8 +22651,8 @@ var skills = [{
     dataNum: "10",
     dataColor: "#ad2323"
   },
-  skill: {
-    name: "Skill 1",
+  tag: {
+    skill: "Skill 1",
     skillClass: "radial_label"
   }
 }, {
@@ -22665,7 +22665,10 @@ var skills = [{
     dataNum: "25",
     dataColor: "blue"
   },
-  skillName: "Skill 2"
+  tag: {
+    skill: "Skill 2",
+    skillClass: "radial_label"
+  }
 }, {
   divClass: "radialDivs",
   canvas: {
@@ -22676,7 +22679,10 @@ var skills = [{
     dataNum: "50",
     dataColor: "orange"
   },
-  skillName: "Skill 3"
+  tag: {
+    skill: "Skill 3",
+    skillClass: "radial_label"
+  }
 }, {
   divClass: "radialDivs",
   canvas: {
@@ -22687,7 +22693,10 @@ var skills = [{
     dataNum: "80",
     dataColor: "yellow"
   },
-  skillName: "Skill 4"
+  tag: {
+    skill: "Skill 4",
+    skillClass: "radial_label"
+  }
 }, {
   divClass: "radialDivs",
   canvas: {
@@ -22698,7 +22707,10 @@ var skills = [{
     dataNum: "90",
     dataColor: "purple"
   },
-  skillName: "Skill 5"
+  tag: {
+    skill: "Skill 5",
+    skillClass: "radial_label"
+  }
 }];
 
 var Profile = function (_Component) {
@@ -22731,8 +22743,11 @@ var Profile = function (_Component) {
             className: column1.picture.class,
             src: column1.picture.src,
             height: column1.picture.imgHeight
-          }),
-          _react2.default.createElement("br", null),
+          })
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "profile_column" },
           _react2.default.createElement("img", { className: column1.logo.class, src: column1.logo.src })
         ),
         _react2.default.createElement(
@@ -22759,7 +22774,7 @@ var Profile = function (_Component) {
                   _react2.default.createElement(
                     "div",
                     null,
-                    skill.skillName
+                    skill.tag.skill
                   )
                 )
               );

@@ -23,8 +23,8 @@ const skills = [
       dataNum: "10",
       dataColor: "#ad2323"
     },
-    skill: {
-      name: "Skill 1",
+    tag: {
+      skill: "Skill 1",
       skillClass: "radial_label"
     }
   },
@@ -38,7 +38,10 @@ const skills = [
       dataNum: "25",
       dataColor: "blue"
     },
-    skillName: "Skill 2"
+    tag: {
+      skill: "Skill 2",
+      skillClass: "radial_label"
+    }
   },
   {
     divClass: "radialDivs",
@@ -50,7 +53,10 @@ const skills = [
       dataNum: "50",
       dataColor: "orange"
     },
-    skillName: "Skill 3"
+    tag: {
+      skill: "Skill 3",
+      skillClass: "radial_label"
+    }
   },
   {
     divClass: "radialDivs",
@@ -62,7 +68,10 @@ const skills = [
       dataNum: "80",
       dataColor: "yellow"
     },
-    skillName: "Skill 4"
+    tag: {
+      skill: "Skill 4",
+      skillClass: "radial_label"
+    }
   },
   {
     divClass: "radialDivs",
@@ -74,7 +83,10 @@ const skills = [
       dataNum: "90",
       dataColor: "purple"
     },
-    skillName: "Skill 5"
+    tag: {
+      skill: "Skill 5",
+      skillClass: "radial_label"
+    }
   }
 ];
 
@@ -90,7 +102,8 @@ class Profile extends Component {
             src={column1.picture.src}
             height={column1.picture.imgHeight}
           />
-          <br />
+        </div>
+        <div className="profile_column">
           <img className={column1.logo.class} src={column1.logo.src} />
         </div>
         <div className="profile_info__skills">
@@ -107,7 +120,7 @@ class Profile extends Component {
                     data-color={skill.canvas.dataColor}
                   />
                   <div>
-                    {skill.skillName}
+                    {skill.tag.skill}
                   </div>
                 </div>
               </li>
